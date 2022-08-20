@@ -11,6 +11,10 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'homes#top', as: 'top'
     resources :customers, only: [:index]
+    resources :items
+    resources :genres
+    resources :orders, only: [:show, :update]
+    resources :order_details, only: [:update]
   end
 
   scope module: :public do
@@ -22,5 +26,11 @@ Rails.application.routes.draw do
 
     get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'confirm_unsubscribe'
     patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw_customer'
+
+    resources :items, only: [:index, :show]
+    resources :cart_items
+    resources :addresses
+    resources :orders
+
   end
 end
