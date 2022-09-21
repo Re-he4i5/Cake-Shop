@@ -83,6 +83,48 @@ Item.create!(
       introduction: "普通のプリン",
       price: "1000",
       is_active: false,
+    },
+    {
+      name: "プリン",
+      genre_id: "3",
+      introduction: "普通のプリン",
+      price: "1000",
+      is_active: false,
+    },
+    {
+      name: "プリン",
+      genre_id: "3",
+      introduction: "普通のプリン",
+      price: "1000",
+      is_active: false,
+    },
+    {
+      name: "プリン",
+      genre_id: "3",
+      introduction: "普通のプリン",
+      price: "1000",
+      is_active: false,
+    },
+    {
+      name: "プリン",
+      genre_id: "3",
+      introduction: "普通のプリン",
+      price: "1000",
+      is_active: false,
+    },
+    {
+      name: "プリン",
+      genre_id: "3",
+      introduction: "普通のプリン",
+      price: "1000",
+      is_active: false,
+    },
+    {
+      name: "プリン",
+      genre_id: "3",
+      introduction: "普通のプリン",
+      price: "1000",
+      is_active: false,
     }
   ]
 )
