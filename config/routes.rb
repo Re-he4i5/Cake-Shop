@@ -28,9 +28,16 @@ Rails.application.routes.draw do
     patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw_customer'
 
     resources :items, only: [:index, :show]
+    #順番注意
+    delete "/cart_items/destroy_all" => "cart_items#destroy_all"
     resources :cart_items
     resources :addresses
     resources :orders
+
+    post 'orders/confirm' => 'orders#confirm'
+    #get 'orders/confirm' => 'orders#confirm'
+    get 'orders/thanks' => 'orders#thanks'
+    resources :orders, only: [:new, :index, :create, :show]
 
   end
 end

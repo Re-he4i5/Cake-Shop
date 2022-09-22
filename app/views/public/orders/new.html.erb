@@ -1,0 +1,102 @@
+<div class="container">
+  <div class="row my-3">
+    <div class="col-md-auto text-right bg-light">
+      <h4>注文情報入力</h4>
+    </div>
+  </div>
+
+  <div class="row">
+    <h4 class="font-weight-bold">
+      支払方法
+    </h4>
+  </div>
+
+  <%= form_with model: @order, url: orders_confirm_path do |f| %>
+
+    <div class="row">
+      <div class="col-md-5 text-center">
+        <!--クレジットカード-->
+        <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
+        <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card] %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 text-center">
+        <!--銀行振込-->
+        <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
+        <%= f.label :payment_method, Order.payment_methods_i18n[:transfer] %>
+      </div>
+    </div>
+
+    <div class="row my-2">
+      <h4 class="font-weight-bold">
+        お届け先
+      </h4>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 text-center">
+        <%= f.radio_button :my_address, 0 %>ご自身の住所
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-7 text-center">
+        〒<%= current_customer.postal_code %>
+          <%= current_customer.address %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-5 text-center">
+        <%= current_customer.last_name + current_customer.first_name %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-5 text-center">
+        <%= f.radio_button :my_address, 1 %>登録済み住所からの選択
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-8 text-center">
+        <%= f.select :address_id, options_from_collection_for_select(current_customer.addresses, :id, :address_display) %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 text-center">
+        <%= f.radio_button :my_address, 2 %>新しいお届け先
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-10 text-center">
+        郵便番号(ハイフンなし)
+        <%= f.text_field :postal_code %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-8 text-center">
+        住所
+        <%= f.text_field :address %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-8 text-center">
+        宛名<%= f.text_field :name %>
+      </div>
+    </div>
+
+    <div class="row my-2">
+      <div class="col text-center">
+        <%= f.submit "確認画面へ進む", class:"btn btn-primary" %>
+      </div>
+    </div>
+
+  <% end %>
+</div>
