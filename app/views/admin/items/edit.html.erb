@@ -1,0 +1,59 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-auto bg-light">
+      		<h4 class="font-weight-bold">
+        		商品新規登録
+      		</h4>
+    	</div>
+  	</div>
+
+	<%= form_with model: @item, url: admin_item_path(@item),method: :patch do |f| %>
+		<%= render 'layouts/error_messages', resource: @item %>
+    	<div class="row my-4">
+      		<div class="col-md-12 text-center">
+        		<table class="table table-borderless">
+					<tbody>
+						<tr>
+							<th>商品画像</th>
+							<td><%= f.file_field :image %></td>
+						</tr>
+            			<tr>
+							<th>商品名</th>
+							<td><%= f.text_field :name %></td>
+						</tr>
+						<tr>
+							<th>商品説明</th>
+							<td><%= f.text_area :introduction %></td>
+						</tr>
+						<tr>
+							<th>ジャンル</th>
+							<td class="select_field"><%= f.collection_select :genre_id, Genre.all, :id, :name %></td>
+							<!-- f.collection_select :保存先のカラム名, 選択肢に使うオブジェクト, :一つ目の引数に渡す値, :選択肢に使うカラム名, include_blank: "選択して下さい" -->
+						</tr>
+						<tr>
+							<th>税抜価格</th>
+							<td><%= f.text_field :price %>円</td>
+						</tr>
+						<tr>
+							<th>販売ステータス</th>
+							<td>
+								<%= f.radio_button :is_active, true %>販売中
+								<%= f.radio_button :is_active, false %>販売停止中
+							</td>
+						</tr>
+     		    	</tbody>
+        		</table>
+      		</div>
+    	</div>
+
+
+    <div class="row my-2">
+    	<div class="col-md-12 text-center">
+        	<%= f.submit '変更する', class:"btn btn-success" %>
+    	</div>
+    </div>
+
+	<% end %>
+
+</div>
+
